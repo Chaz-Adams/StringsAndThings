@@ -8,14 +8,22 @@ public class StringsAndThings {
 
     /**
      * Given a string, count the number of words ending in 'y' or 'z' -- so the 'y' in "heavy" and the 'z' in "fez" count,
-     * but not the 'y' in "yellow" (not case sensitive). We'll say that a y or z is at the end of a word if there is not an alphabetic
+     * but not the 'y' in "yellow" (not case-sensitive). We'll say that a y or z is at the end of a word if there is not an alphabetic
      * letter immediately following it. (Note: Character.isLetter(char) tests if a char is an alphabetic letter.)
      * example : countYZ("fez day"); // Should return 2
      *           countYZ("day fez"); // Should return 2
      *           countYZ("day fyyyz"); // Should return 2
      */
     public Integer countYZ(String input){
-        return null;
+        int result = 0;
+        String[] stringArray = input.split(" ");
+        for(String word : stringArray){
+            if(word.endsWith("y") || word.endsWith("z")){
+                result++;
+            }
+        }
+
+        return result;
     }
 
     /**
@@ -28,19 +36,39 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return null;
+        String originalString = base;
+        String subToDelete = remove;
+        String newString = originalString.replace(subToDelete,"");
+
+        return newString;
     }
 
     /**
      * Given a string, return true if the number of appearances of "is" anywhere in the string is equal
-     * to the number of appearances of "not" anywhere in the string (case sensitive)
+     * to the number of appearances of "not" anywhere in the string (case-sensitive)
      *
      * example : containsEqualNumberOfIsAndNot("This is not")  // Should return false
      *           containsEqualNumberOfIsAndNot("This is notnot") // Should return true
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
+        int notCounter = 0;
+        int isCounter = 0;
+
+       for(int i = 0; i < input.length()-2; i++)
+       {
+           if(input.charAt(i) == 'i' && input.charAt(i +1) == 's')
+           {
+               isCounter++;
+           }
+
+           if(input.charAt(i) == 'n' && input.charAt(i +1) == 'o' && input.charAt(i +2) == 't')
+           {
+               notCounter++;
+           }
+       }
+
+        return isCounter == notCounter;
     }
 
     /**
@@ -51,7 +79,17 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return  false
      */
     public Boolean gIsHappy(String input){
-        return null;
+        int length = input.length();
+        boolean counter = false;
+
+        for(int i = 0; i < length -1; i++){
+            char temp = 'g';
+            if((temp == input.charAt(i)) && (temp == input.charAt(i +1))){
+                counter = true;
+            }
+        }
+
+        return counter;
     }
 
 
@@ -63,6 +101,15 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
-        return null;
+        int length = input.length();
+        int counter = 0;
+
+        for(int i = 0; i < length - 2; i++){
+            char temp = input.charAt(i);
+            if(temp == input.charAt(i + 1) && temp == input.charAt(i + 2)){
+                counter++;
+            }
+        }
+        return counter;
     }
 }
